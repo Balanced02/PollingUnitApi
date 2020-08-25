@@ -1,0 +1,39 @@
+.meter {
+  height: 5px;
+  position: fixed;
+  background: transparent;
+  overflow: hidden;
+  width: 100%;
+  z-index: 99999999999;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+}
+
+.progress-bar {
+  background-color: #6163FF;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(97, 99, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(97, 99, 255, 0.2) 50%,
+    rgba(97, 99, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
+  width: 40%;
+  animation: progressBar 3s infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes progressBar {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw);
+  }
+}
