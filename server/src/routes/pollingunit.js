@@ -1,5 +1,5 @@
 import express from "express";
-import PoolingUnit from "../models/PoolingUnit.js";
+import PoolingUnit from "../models/PollingUnit.js";
 import advancedResults from "../helpers/advancedFilter.js";
 import { getAllPoolingUnit } from "../controllers/PoolingUnitController.js";
 import { asyncHandler } from "../helpers/utils.js";
@@ -70,6 +70,28 @@ router.get(
       wardName: req.query.ward,
     }).distinct("psName");
     res.json(data);
+  })
+);
+
+router.get(
+  "/unit-details",
+  asyncHandler(async (req, res) => {
+    if (!Object.keys(req.query).length || !req.query.unit) {
+      return res.status(400).json({
+        title: "Bad Request",
+        message:
+          "Wrong query passed \n eg. /unit-details?unit=NDIUWA - NDIUWA VILLAGE HALL",
+      });
+    }
+    const data = await PoolingUnit.findOne({
+      psName: req.query.unit,
+    });
+    if (data) {
+      res.json(data);
+    }
+    else {
+      res.status(404).json({ message: 'Unit not found' })
+    }
   })
 );
 

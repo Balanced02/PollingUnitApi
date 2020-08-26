@@ -41,6 +41,16 @@ const apiTest = [
     description: "Get array of all wards in a local government",
     url: "/polling-unit/unit?state=ABIA&lga=BENDE&ward=ITUMBAUZO",
   },
+  {
+    title: "Get ward details",
+    description: "Get full details of a Polling Unit",
+    url: "/polling-unit/unit-details?unit=NDIUWA - NDIUWA VILLAGE HALL",
+  },
+  {
+    title: "Not found error for polling unit details",
+    description: "Expected error response when polling unit isn't found",
+    url: "/polling-unit/unit-details?unit=FAKE POLLING UNIT",
+  },
 ];
 
 export default function Documentation() {
